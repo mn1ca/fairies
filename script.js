@@ -4,22 +4,21 @@ var prev = {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
+
     const screen = document.getElementById('screen');
     const background = document.getElementById('background');
     const parallax = document.getElementById('parallax');
     const character = document.getElementById('character');
 
-    const screenDimensions = screen.getBoundingClientRect();
-    const center = {
-        X: screenDimensions.left + screenDimensions.width / 2,
-        Y: screenDimensions.top + screenDimensions.height /2
-    };
-
-    console.log(center);
-
-    const bounds = document.getElementById('bounds').getBoundingClientRect();
-
     screen.addEventListener('click', (e) => {
+
+        const screenDimensions = screen.getBoundingClientRect();
+        const center = {
+            X: screenDimensions.left + screenDimensions.width / 2,
+            Y: screenDimensions.top + screenDimensions.height /2
+        };
+
+        const bounds = document.getElementById('bounds').getBoundingClientRect();
 
         console.log(e.clientX, e.clientY);
 

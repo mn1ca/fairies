@@ -19,6 +19,8 @@ body {
     color: var(--brown);
     font-family: Libertinus Sans;
     font-size: 16px;
+
+    cursor: url('./img/cursor/1.png'), pointer;
 }
 
 a {

@@ -71,3 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
 });
+
+
+function openJournal() {
+    return;
+}
+
+function closeJournal() {
+    document.getElementById('journal').style.display = 'none';
+    return;
+}

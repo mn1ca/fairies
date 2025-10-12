@@ -1,3 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
+@font-face {
+    font-family: 'Pristina';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Pristina'), url('./fonts/Pristina.woff') format('woff');
+}
+
+:root {
+    --brown: #441c16;
+    --tan: #eddec2;
+    --cream: #f7f2e4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    color: var(--brown);
+    font-family: Libertinus Sans;
+    font-size: 16px;
+}
+
+a {
+    color: var(--brown);
+    font-weight: 500;
+}
+
+h1 {
+    font-family: Pristina;
+    font-weight: normal;
+    font-size: 28px;
+    line-height: 1;
+
+    margin: 25px 0px 0px -10px;
+}
+
+b {
+    font-weight: 1000;
+    font-size: 80%;
+}
+
+ul {
+    margin: 0px;
+    padding: 0px 20px;
+}
+
+.subtitle {
+    border-left: 1px solid var(--brown);
+    padding-left: 8px;
+    margin-left: 3px;
+
+    font-size: 80%;
+    line-height: 1;
+}
+
 #screen {
     width: 1100px;
     height: 600px;
@@ -26,8 +82,8 @@
 }
 
 #character {
-    width: 50px;
-    height: 100px;
+    width: 60px;
+    height: 120px;
 
     background-color: black;
 
@@ -76,4 +132,143 @@
     position: relative;
     right: -100px;
     bottom: 100px;
+}
+
+#journal {
+    width: 1200px;
+    height: 600px;
+
+    background-image: url('./img/journal.png');
+    background-size: cover;
+
+    position: absolute;
+    top: 350px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#close {
+    width: 100px;
+    height: 60px;
+
+    position: absolute;
+    top: 410px;
+    right: 20px;
+
+    text-align: center;
+    color: var(--cream);
+
+    font-weight: 1000;
+    font-size: 45px;
+}
+
+#close::after {
+    content: '✕';
+}
+
+.title {
+    width: 250px;
+    height: 60px;
+
+    padding: 8px 12px;
+    display: inline-flex;
+    justify-content: space-between;
+
+    position: absolute;
+
+    font-family: Pristina;
+    font-size: 40px;
+
+    background-color: var(--tan);
+
+    outline: 1px dashed var(--brown);
+    outline-offset: -5px;
+    border: 2px solid var(--brown);
+
+    z-index: 5;
+
+    transition: .25s;
+}
+
+.clickable {
+    height: 65px;
+    outline: 0px;
+}
+
+.clickable:hover {
+    scale: 1.01;
+    filter: brightness(1.05);
+    transition: .25s;
+}
+
+.box {
+    width: 315px;
+    height: 350px;
+
+    position: absolute;
+
+    background-color: var(--cream);
+    transform: rotate(2deg);
+
+    text-align: justify;
+
+    border: 2px solid var(--brown);
+
+    padding: 25px;
+
+    overflow-y: auto;
+}
+
+.links {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 10px;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.links a {
+    text-decoration: none;
+    border-bottom: 1px dashed var(--brown);
+    color: var(--brown);
+
+    font-weight: 1000;
+}
+
+.links a::after {
+    content: "";
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    background-color: var(--brown);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-external-link'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E");
+
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-external-link'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E");
+
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-position: center;
+    margin-left: 2px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+    height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  opacity: 0;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--tan);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

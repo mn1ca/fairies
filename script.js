@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const background = document.getElementById('background');
     const parallax = document.getElementById('parallax');
     const character = document.getElementById('character');
+    const details = document.getElementById('details');
+
 
     screen.addEventListener('click', (e) => {
 
@@ -17,6 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
             X: screenDimensions.left + screenDimensions.width / 2,
             Y: screenDimensions.top + screenDimensions.height /2
         };
+
+        // Flip character in direction of travel
+        const charDimensions = character.getBoundingClientRect();
+        const charCenter = charDimensions.left + charDimensions.width / 2;
+
+        if (e.clientX < (charCenter - 25))
+            details.style.transform = 'scaleX(-1)';
+        else
+            details.style.transform = 'scaleX(1)';
 
         const bounds = document.getElementById('bounds').getBoundingClientRect();
 
@@ -31,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const totalMovement = Math.sqrt((center.X - e.clientX) ** 2 + (center.Y - e.clientY) ** 2);
             const transitionTime = 2;//Math.abs(0.0075 * (totalMovement));
 
-            const maxView = [640, -430, 1185, -1185];
+            const maxView = [650, -700, 1300, -1350];
 
             let transformX = 0;
             let transformY = 0;

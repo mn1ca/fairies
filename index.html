@@ -1,10 +1,11 @@
 <html>
     <head>
-        <meta name="viewport" content="sinitial-scale=1.0">
+        <meta name="viewport" content="initial-scale=1.0">
         <meta charset="UTF-8">
         <title></title>
         <link href="./style.css" rel="stylesheet" type="text/css" media="all">
         <script src="script.js"></script>
+        <script src="https://iframe.chat/scripts/main.min.js"></script>
 
         <!-- favicon -->
         <link rel="icon" type="image/x-icon" href="https://mn1ca.neocities.org/picture/fish icon.png">
@@ -13,6 +14,23 @@
 
 
 <body>
+    <div id='wrapper'>
+    <div id="preloader">
+
+        <div id='load'>Loading </div>
+    </div>
+    <audio id='tune' src='audio/Maple%20Tree%20Hill.mp3' autoplay></audio>
+
+    <div id='center'>
+    <div id='outer'>
+        <div id='border'></div>
+        <div id='music-icon' class='music-icon' onclick='toggleMusic()'></div>
+        <div id='journal-icon' onclick='openJournal()'></div>
+        <div id='sit-icon'>
+            <div id='sit' onclick='sit()'></div>
+        </div>
+    </div>
+
     <div id='screen'>
         <div id='parallax'></div>
         <div id='background'></div>
@@ -35,14 +53,16 @@
         </div>
     </div>
 
-    <div id='journal' style='display: none'>
+    <div id='journal-display' style='display: none'>
+    <div id='shadow' onclick='closeJournal()'></div>
+    <div id='journal'>
         <div id='close' onclick='closeJournal()'></div>
 
 
         <div id='page1'>
-            <div class='title' style='top: 85px; left: 200px; transform: rotate(-5deg);'>Credits & Links</div>
+            <div class='title' style='top: 85px; left: 150px; transform: rotate(-5deg);'>Credits & Links</div>
 
-            <div class='box' style='top: 140px; left: 225px;'>
+            <div class='box' style='top: 140px; left: 200px;'>
 
                 This project is a partial recreation of the now-defunct <a href='https://en.wikipedia.org/wiki/Pixie_Hollow_(video_game)' target='_blank'>Pixie Hollow Online.</a>
 
@@ -51,11 +71,20 @@
                 </div>
 
                 <h1>References</h1>
+                <h2>Art</h2>
                 <ul>
                     <li><a href='https://disneyfairies.fandom.com/wiki/Maple_Tree_Hill' target='_blank'>Disney Fairies Wiki</a></li>
                     <li><a href='https://wethepixies.com' target='_blank'>We the Pixies</a></li>
                     <li><a href='https://archive.org/details/inrealmofneverfa0000pete' target='_blank'>In the Realm of Never Fairies</a></li>
-                    <li><a href='https://artofdisneyfairies.tumblr.com/archive/tagged/im%3A%20PHO' target='blank'>Art of Disney Fairies <i>(blog)</i></a></li>
+                    <li><a href='https://artofdisneyfairies.tumblr.com/archive/tagged/im%3A%20PHO' target='blank'>Art of Disney Fairies</a></li>
+                </ul>
+                <br>
+                <h2>Programming</h2>
+                <ul>
+                    <li><a href='https://nenrikido.neocities.org/blog/post/making-a-preloader/' target='_blank'>Preloader</a></li>
+                    <li><a href='https://stackoverflow.com/questions/13014808/is-there-any-way-to-animate-an-ellipsis-with-css-animations' target='_blank'>Animated ellipsis</a></li>
+                    <li><a href='https://design-system.w3.org/styles/svg-icons.html' target='_blank'>SVG icons</a></li>
+                    <li><a href='https://stackoverflow.com/questions/63433264/looping-background-music-in-html' target='_blank'>Music looping</a></li>
                 </ul>
 
                 <h1>Music</h1>
@@ -70,12 +99,17 @@
 
             </div>
 
-            <div class='title clickable' style='top: 215px; right: 335px; transform: rotate(5deg)';><span>↜</span><span>Back</span></div>
-            <div class='title clickable' style='top: 150px; right: 250px; transform: rotate(-3deg);'><span>Home</span><span>⇢</span>
-            </div>
+            <iframe src="https://iframe.chat/embed/alternate?chat=40345917" id="chattable"></iframe>
+            <script>
+              chattable.initialize({stylesheet: "./chat.css"});
+            </script>
+
 
         </div>
 
     </div>
+</div>
+</div>
+        </div>
 </body>
 </html>

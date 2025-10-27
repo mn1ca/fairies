@@ -24,12 +24,24 @@ body {
     font-family: Libertinus Sans;
     font-size: 16px;
 
+    background: linear-gradient(#050C1F, #222D48);
+
     cursor: url('./img/cursor/1.png'), pointer;
+
+    overflow: visible;
 }
 
 a {
     color: var(--brown);
     font-weight: 500;
+
+    cursor: url('./img/cursor/2.png'), pointer;
+}
+
+br {
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
 }
 
 h1 {
@@ -39,6 +51,18 @@ h1 {
     line-height: 1;
 
     margin: 25px 0px 0px -10px;
+
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+h2 {
+    font-size: 18px;
+    line-height: 1;
+    margin: 2px 0px;
+
+    font-style: italic;
 }
 
 b {
@@ -49,6 +73,115 @@ b {
 ul {
     margin: 0px;
     padding: 0px 20px;
+
+    list-style-type: "⟡˚  ";
+}
+
+li::marker {
+    font-size: .75em;
+}
+
+#preloader {
+    width: 100%;
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    background: linear-gradient(#050C1F, #222D48);
+    align-items: center;
+    justify-content: center;
+
+    display: flex;
+
+    font-family: Pristina;
+    color: white;
+    font-size: 24px;
+
+    z-index: 9999;
+}
+
+#load::after {
+    width: 0px;
+
+    overflow: hidden;
+    display: inline-block;
+
+    font-family: Libertinus Sans;
+    font-size: 16px;
+
+    animation: ellipsis steps(4, end) 0.75s infinite;
+    content: '\2026';
+
+}
+
+#enter {
+    font-size: 48px;
+    line-height: 0.8;
+    text-align: center;
+
+    background-color: rgba(255, 175, 0, 0.15);
+    box-shadow: 0px 0px 100px rgba(255, 175, 0);
+
+    cursor: url('./img/cursor/2.png'), pointer;
+
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+
+}
+
+#warning {
+    width: 250px;
+    text-align: center;
+    font-family: Libertinus Sans;
+    font-size: 12px;
+    font-style: italic;
+
+    position: absolute;
+    top: 55%;
+
+    pointer-events: none;
+}
+
+#enter:hover {
+    box-shadow: 0px 0px 100px rgba(255, 175, 0), 0px 0px 200px rgba(255, 175, 0);
+    background-color: rgba(255, 175, 0, 0.2);
+    transform: scale(1.1);
+    transition: transform 0.5s ease-out;
+}
+
+#loader-music {
+    width: 100px;
+    height: 100px;
+    transform: scale(.6);
+    background: url('./img/icons.png');
+    background-position: -200px 0px;
+
+    position: absolute;
+    top: 60%;
+}
+
+#loader-music::after {
+    position: absolute;
+    width: 130px;
+
+    margin-top: 90px;
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+
+    content: 'Autoplay music?';
+
+    font-family: Libertinus Sans;
+    font-size: 18px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 16px;
+  }
 }
 
 .subtitle {
@@ -63,10 +196,12 @@ ul {
 #screen {
     width: 1100px;
     height: 600px;
-    position: relative;
-    top: 20px;
 
-    border: 3px solid black;
+    position: absolute;
+    top: 365px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     border-radius: 1000px;
 
     display: flex;
@@ -74,6 +209,87 @@ ul {
 
     margin: auto;
     overflow: hidden;
+}
+
+#outer {
+    width: 1125px;
+
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    z-index: 10;
+}
+
+#journal-icon {
+    width: 100px;
+    height: 100px;
+
+    background: url('./img/icons.png');
+    background-position: -100px 0px;
+
+    position: absolute;
+    top: 45px;
+    left: -20px;
+
+    transform: rotate(10deg);
+
+    cursor: url('./img/cursor/2.png'), pointer;
+}
+
+#music-icon {
+    top: -10px;
+    left: 80px;
+}
+
+.music-icon {
+    width: 100px;
+    height: 100px;
+
+    background: url('./img/icons.png');
+    background-position: -200px 0px;
+
+    position: absolute;
+
+    cursor: url('./img/cursor/2.png'), pointer;
+}
+
+#music-icon:hover {
+    transform: rotate(-5deg);
+}
+
+#journal-icon:hover {
+    transform: none;
+}
+
+#sit {
+    width: 100px;
+    height: 100px;
+    transform: scale(1.12);
+    background: url('./img/icons.png');
+    background-position: 0px 0px;
+
+    position: absolute;
+    top: 550px;
+    right: 185px;
+
+    clip-path: circle(50% at 50% 50%);
+    cursor: url('./img/cursor/2.png'), pointer;
+}
+
+#sit-icon:hover {
+    filter: brightness(1.15);
+    transition: filter .15s ease-out;
+}
+
+#border {
+    width: 1125px;
+    content: url('./img/border.png');
+    position: absolute;
+    pointer-events: none;
+
+    z-index: 10;
 }
 
 #bounds {
@@ -94,9 +310,11 @@ ul {
     /*background: url('https://cdn.discordapp.com/attachments/1172444581279846454/1430035291749613568/Untitled_Artwork.png?ex=68f8f866&is=68f7a6e6&hm=65171999691930584fcf70e36d32f75412ecdb3b8d35a6e9039a4d12f0061c93&');
     background-size: cover;
 */
+
+    border: 1px solid black;
     position: relative;
     margin: auto;
-    transition: transform 2s ease-out;
+    transition: transform 1s ease-out;
 
 }
 
@@ -130,7 +348,7 @@ ul {
 #wings {
     background: url('./img/character/body.png');
     background-position: -0px calc(var(--h) * -3);
-    animation: wing-flap 0.3s steps(3) infinite;
+    animation: wing-flap 0.35s steps(3) infinite;
 }
 
 @keyframes wing-flap {
@@ -180,7 +398,6 @@ ul {
     background-image: url('./img/parallax.png');
     background-size: cover;
 
-    border: 1px solid black;
     position: absolute;
     top: -180%;
     width: 100%;
@@ -201,17 +418,47 @@ ul {
     bottom: 100px;
 }
 
+#shadow {
+    width: 100%;
+    height: 100vh;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    background: linear-gradient(#050C1F, #222D48);
+    opacity: 0.5;
+
+    z-index: 998;
+}
+
+#chattable {
+    width: 350px;
+    height: 400px;
+
+    border: 0px;
+
+    position: absolute;
+    top: 100px;
+    right: 215px;
+
+    transform: rotate(-2deg);
+
+}
+
 #journal {
-    width: 1200px;
-    height: 600px;
+    width: 1150px;
+    height: 575px;
 
     background-image: url('./img/journal.png');
     background-size: cover;
 
     position: absolute;
-    top: 350px;
+    top: 375px;
     left: 50%;
     transform: translate(-50%, -50%);
+
+    z-index: 999;
 }
 
 #close {
@@ -219,7 +466,7 @@ ul {
     height: 60px;
 
     position: absolute;
-    top: 410px;
+    top: 390px;
     right: 20px;
 
     text-align: center;
@@ -227,6 +474,8 @@ ul {
 
     font-weight: 1000;
     font-size: 45px;
+
+    cursor: url('./img/cursor/2.png'), pointer;
 }
 
 #close::after {
@@ -254,7 +503,11 @@ ul {
 
     z-index: 5;
 
-    transition: .25s;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .25), 0 15px 20px #594b47;
 }
 
 .clickable {
@@ -275,7 +528,7 @@ ul {
     position: absolute;
 
     background-color: var(--cream);
-    transform: rotate(2deg);
+    transform: rotate(3deg);
 
     text-align: justify;
 
@@ -284,6 +537,8 @@ ul {
     padding: 25px;
 
     overflow-y: auto;
+
+    box-shadow: 5px 5px 15px #594b47;
 }
 
 .links {
@@ -292,6 +547,10 @@ ul {
     margin-top: 10px;
     display: inline-flex;
     justify-content: space-between;
+
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
 }
 
 .links a {
@@ -338,4 +597,21 @@ ul {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        transform: rotate(90deg) scale(.5);
+        background: linear-gradient(to left, #050C1F, #222D48);
+        overflow: hidden;
+    }
+
+    #preloader {
+        transform: rotate(-90deg) scale(2);
+        background: linear-gradient(to left, #050C1F, #222D48);
+    }
+
+    #shadow {
+        transform: rotate(-90deg) scale(2);
+    }
 }

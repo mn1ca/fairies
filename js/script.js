@@ -18,6 +18,7 @@ window.addEventListener('load', () => {
             // Play music
             music.volume = musicPlaying ? 0.5 : 0;
             if (!musicPlaying) music.muted = true;
+            music.play();
         };
 
         const musicIcon = document.createElement('div');

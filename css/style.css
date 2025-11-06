@@ -131,6 +131,8 @@ input[type='range']::-webkit-slider-thumb {
 
     background: url('../img/orb.png');
     background-size: cover;
+
+    clip-path: circle(50% at 50% 50%);
 }
 
 #eyes-hue {
@@ -651,7 +653,7 @@ input[type='range']::-webkit-slider-thumb {
 }
 
 .active {
-    width: 110%;
+    width: 115%;
 
     position: relative;
     top: 0px;

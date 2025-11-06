@@ -3,6 +3,7 @@
         <meta name="viewport" content="initial-scale=1.0">
         <meta charset="UTF-8">
         <title></title>
+        <link rel="icon" type="image/x-icon" href="./img/orb.png">
         <link href="./css/style.css" rel="stylesheet" type="text/css" media="all">
         <link href="./css/character.css" rel="stylesheet" type="text/css" media="all">
         <script src="./js/script.js"></script>
@@ -16,9 +17,9 @@
 
 
 <body>
-    <!--<div id='preloader'>
+    <div id='preloader'>
         <div id='load'>Loading </div>
-    </div>-->
+    </div>
 
     <audio loop autoplay id='tune' src='audio/Maple%20Tree%20Hill.mp3'></audio>
 
@@ -44,6 +45,7 @@
                 <span class='sign-text'>Design</span>
             </div>
             </a>
+
         </div>
 
         <div id='bounds'>
@@ -68,12 +70,12 @@
 
     </div>
 
-    <div id='journal-display'>
+    <div id='journal-display' style='display: none'>
     <div id='shadow' onclick='closeJournal()'></div>
     <div id='journal'>
-        <div id='close' class='journal-icon' onclick='closeJournal()'></div>
+        <div id='close' class='tab-icon' onclick='closeJournal()'></div>
         <div id='icon-page1' onclick='changePage(1)'></div>
-        <div id='icon-page2' class='journal-icon' onclick='changePage(2)'></div>
+        <div id='icon-page2' class='tab-icon' onclick='changePage(2)'></div>
 
         <div id='page1'>
             <div class='title' style='top: 85px; left: 150px; transform: rotate(-5deg);'>Credits & Links</div>
@@ -83,7 +85,8 @@
                 This project is a partial recreation of the now-defunct <a href='https://en.wikipedia.org/wiki/Pixie_Hollow_(video_game)' target='_blank'>Pixie Hollow Online.</a>
 
                 <div class='links'>
-                    <a href=''>documentation</a><span>/</span><a href=''>github</a>
+                    <a href='https://mn1ca.fish/design/fairies'>documentation</a><span>/
+                    </span><a href='https://github.com/mn1ca/fairies' target='_blank'>github</a>
                 </div>
 
                 <h1>References</h1>
@@ -101,7 +104,7 @@
                     <li><a href='https://stackoverflow.com/questions/13014808/is-there-any-way-to-animate-an-ellipsis-with-css-animations' target='_blank'>Animated ellipsis</a></li>
                     <li><a href='https://design-system.w3.org/styles/svg-icons.html' target='_blank'><h4>SVG</h4> icons
                     </a><ul class='sub'>
-                        <li>Icon designs</li>
+                        <li><a href='https://fontawesome.com/' target='_blank'>Icon designs</a></li>
                         <li><a href='https://yoksel.github.io/url-encoder/' target='_blank'><h4>CSS</h4> formatter</a></li>
                     </ul>
                 </ul>
@@ -120,7 +123,7 @@
 
             <iframe src="https://iframe.chat/embed/alternate?chat=40345917" id="chattable"></iframe>
             <script>
-              chattable.initialize({stylesheet: "./css/chat.css"});
+                chattable.initialize({stylesheet: "./css/chat.css"});
             </script>
 
 
@@ -131,10 +134,10 @@
 
             <div class='box' id='select-box'>
 
-                <div id='talent-select' style='display: none'>
+                <div id='talent-select'>
                     <h1>Talent</h1>
                     <div class='option' id='talent-0' onclick='changeTalent(0)'>Tinker</div>
-                    <div class='option' id='talent-1' onclick='changeTalent(1)'>Garden</div>
+                    <div class='option selected' id='talent-1' onclick='changeTalent(1)'>Garden</div>
                     <div class='option' id='talent-2' onclick='changeTalent(2)'>Water</div>
                     <div class='option' id='talent-3' onclick='changeTalent(3)'>Light</div>
                     <div class='option' id='talent-4' onclick='changeTalent(4)'>Animal</div>
@@ -211,52 +214,64 @@
                 </div>
 
                 <div id='clothing-select' style='display: none'>
-                    <h1>Top</h1>
-                    <div class='color-select-clothes'>
 
-                        <input class='slider-hue-full' id='top-hue' step=5 type="range" min=-180 max=180 value=0>
-                        <input class='slider-saturate' id='top-saturation' step=2.08 type="range" min=25 max=175 value=100>
-                        <input class='slider-brightness' id='top-brightness' step=0.69 type="range" min=75 max=125 value=100>
-                        <h3 class='match'>match bottom</h3>
-                        <h3 class='match'>match shoes</h3>
+                    <div id='top-select'>
+                        <h1>Top</h1>
+                        <div class='color-select'>
 
+                            <h3 class='match' onclick='match("top", "bottom")'>Match bottom</h3>
+                            <h3 class='match' onclick='match("top", "shoes")'>Match shoes</h3>
+                            <input class='slider-hue-full' id='top-hue' step=5 type="range" min=-180 max=180 value=0>
+                            <input class='slider-saturate' id='top-saturation' step=2.08 type="range" min=25 max=175 value=100>
+                            <input class='slider-brightness' id='top-brightness' step=0.69 type="range" min=75 max=125 value=100>
+                        </div>
+
+                        <br>
+
+                        <div class='option' id='top-0' onclick='changeClothing(0, 0)'>Off shoulder</div>
+                        <div class='option' id='top-1' onclick='changeClothing(1, 0)'>Leafy</div>
+                        <div class='option selected' id='top-2' onclick='changeClothing(2, 0)'>Wrap</div>
                     </div>
 
-                    <br>
+                     <div id='bottom-select' style='display: none'>
+                        <h1>Bottom</h1>
+                        <div class='color-select'>
 
-                    <div class='option' id='top-0' onclick='changeClothing(0, 0)'>Off shoulder</div>
-                    <div class='option' id='top-1' onclick='changeClothing(1, 0)'>Leafy</div>
-                    <div class='option selected' id='top-2' onclick='changeClothing(2, 0)'>Wrap</div>
+                            <h3 class='match' onclick='match("bottom", "top")'>Match top</h3>
+                            <h3 class='match' onclick='match("bottom", "shoes")'>Match shoes</h3>
+                            <input class='slider-hue-full' id='bottom-hue' step=5 type="range" min=-180 max=180 value=0>
+                            <input class='slider-saturate' id='bottom-saturation' step=2.08 type="range" min=25 max=175 value=100>
+                            <input class='slider-brightness' id='bottom-brightness' step=0.69 type="range" min=75 max=125 value=100>
+                        </div>
 
+                        <br>
 
-                    <h1>Bottom</h1>
-                    <div class='color-select'>
-                    <h3>color</h3>
-                        <input class='slider-hue-full' id='bottom-hue' step=5 type="range" min=-180 max=180 value=0>
-                        <input class='slider-saturate' id='bottom-saturation' step=2.08 type="range" min=25 max=175 value=100>
-                        <input class='slider-brightness' id='bottom-brightness' step=0.69 type="range" min=75 max=125 value=100>
-                        match bottom / match shoes
+                        <div class='option' id='bottom-0' onclick='changeClothing(0, 1)'>Petal skirt</div>
+                        <div class='option' id='bottom-1' onclick='changeClothing(1, 1)'>Asymmetrical</div>
+                        <div class='option selected' id='bottom-2' onclick='changeClothing(2, 1)'>Leaf with flower</div>
                     </div>
 
-                    <br>
-
-                    <div class='option' id='bottom-0' onclick='changeClothing(0, 1)'>Petaled skirt</div>
-                    <div class='option' id='bottom-1' onclick='changeClothing(1, 1)'>Asymmetrical</div>
-                    <div class='option selected' id='bottom-2' onclick='changeClothing(2, 1)'>Leaf with slit</div>
-
-
-                    <h1>Shoes</h1>
-                    <div class='color-select'>
-                    <h3>color</h3>
-                        <input class='slider-hue-full' id='shoes-hue' step=5 type="range" min=-180 max=180 value=0>
-                        <input class='slider-saturate' id='shoes-saturation' step=2.08 type="range" min=25 max=175 value=100>
-                        <input class='slider-brightness' id='shoes-brightness' step=0.69 type="range" min=75 max=125 value=100>
-                        match bottom / match shoes
+                    <div id='shoes-select' style='display: none'>
+                        <h1>Shoes</h1>
+                        <div class='color-select'>
+                            <h3 class='match' onclick='match("shoes", "top")'>Match top</h3>
+                            <h3 class='match' onclick='match("shoes", "bottom")'>Match bottom</h3>
+                            <input class='slider-hue-full' id='shoes-hue' step=5 type="range" min=-180 max=180 value=0>
+                            <input class='slider-saturate' id='shoes-saturation' step=2.08 type="range" min=25 max=175 value=100>
+                            <input class='slider-brightness' id='shoes-brightness' step=0.69 type="range" min=75 max=125 value=100>
+                        </div>
+                        <br>
+                        <div class='option' id='shoes-0' onclick='changeClothing(0, 2)'>Puffball</div>
+                        <div class='option' id='shoes-1' onclick='changeClothing(1, 2)'>Slippers</div>
+                        <div class='option selected' id='shoes-2' onclick='changeClothing(2, 2)'>Boots</div>
                     </div>
 
-                    <div class='option' id='shoes-0' onclick='changeClothing(0, 2)'>Puffball</div>
-                    <div class='option' id='shoes-1' onclick='changeClothing(1, 2)'>Slippers</div>
-                    <div class='option selected' id='shoes-2' onclick='changeClothing(2, 2)'>Boots</div>
+                    <div id='clothes-pagination'>
+                        <span id='top-icon' class='clothes-icon clothes-active' onclick='changeClothesPage("top")'></span>
+                        <span id='bottom-icon' class='clothes-icon' onclick='changeClothesPage("bottom")'></span>
+                        <span id='shoes-icon' class='clothes-icon' onclick='changeClothesPage("shoes")'></span>
+                        </div>
+
                 </div>
 
             </div>

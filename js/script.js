@@ -66,7 +66,7 @@ function toggleMusic() {
 
 // Quiet music when not in focus
 window.addEventListener('blur', () => {
-    document.getElementById('tune').volume = 0.15;
+    if (musicPlaying) document.getElementById('tune').volume = 0.15;
 });
 
 

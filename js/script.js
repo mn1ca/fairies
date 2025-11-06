@@ -16,8 +16,8 @@ window.addEventListener('load', () => {
             loader.style.pointerEvents = 'none';
 
             // Play music
-            music.play();
             music.volume = musicPlaying ? 0.5 : 0;
+            if (!musicPlaying) music.muted = true;
         };
 
         const musicIcon = document.createElement('div');
@@ -48,12 +48,14 @@ function toggleMusic() {
     const music = document.getElementById('tune');
 
     if (musicPlaying) {
+        music.muted = true;
         music.volume = 0;
         icon.forEach(e => {
             e.style.backgroundPosition = '-300px 0px';
         });
         musicPlaying = false;
     } else {
+        music.muted = false;
         music.volume = 0.5;
         icon.forEach(e => {
             e.style.backgroundPosition = '-200px 0px';

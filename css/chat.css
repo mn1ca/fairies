@@ -4,7 +4,7 @@
     font-family: 'Pristina';
     font-style: normal;
     font-weight: normal;
-    src: local('Pristina'), url('https://github.com/mn1ca/pixiehollow/blob/master/fonts/Pristina.woff') format('woff');
+    src: local('Pristina'), url('https://github.com/mn1ca/fairies/blob/master/fonts/Pristina.woff') format('woff');
 }
 
 :root {
@@ -21,8 +21,6 @@ body {
     width: 400px;
     font-family: Libertinus Sans;
     color: var(--brown);
-
-    cursor: url('https://github.com/mn1ca/pixiehollow/blob/master/img/cursor/1.png'), pointer !important;
 }
 
 .msgWrapper {
@@ -45,8 +43,6 @@ body {
     text-align: left;
     font-size: 10pt;
     line-height: 1;
-
-    cursor: url('https://github.com/mn1ca/pixiehollow/blob/master/img/cursor/1.png'), pointer !important;
 }
 
 .msgWrapper:nth-child(6n) {

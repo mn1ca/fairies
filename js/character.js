@@ -1,3 +1,20 @@
+const width = 500;
+const height = 875;
+var charDetails = {
+
+    talent: 1,
+    hairFront: 1,
+    hairBack: 2,
+    hairColor: 5,
+    eyes: 0,
+
+    body: 1,
+    top: 2,
+    bottom: 2,
+    shoes: 2,
+
+    sit: false,
+};
 var active = 'talent';
 
 function changeMenu(category) {
@@ -114,6 +131,7 @@ function changeHairColor(i) {
 
 function changeBody(i) {
 
+    // Reset custom color changes
     document.getElementById('skin-hue').value = 0;
     document.getElementById('skin-brightness').value = 100;
     document.getElementById('skin-saturation').value = 100;
@@ -128,6 +146,7 @@ function changeBody(i) {
 
     return;
 }
+
 
 function changeEyes(i, permanent = true) {
 
@@ -146,8 +165,7 @@ function changeEyes(i, permanent = true) {
 
 function changeClothing(i, piece, permanent = true) {
 
-    console.log(i, piece, permanent);
-
+    // Tops
     if (piece === 0) {
         const top = document.querySelectorAll('.top');
         top.forEach(t => {t.style.backgroundPosition = `${-i * width}px ${0 * height}px`});
@@ -158,6 +176,9 @@ function changeClothing(i, piece, permanent = true) {
             charDetails.top = i;
         }
 
+        return;
+
+    // Bottoms
     } else if (piece === 1) {
         const bottom = document.querySelectorAll('.bottom');
         bottom.forEach(b => {b.style.backgroundPosition = `${-i * width}px ${-1 * height}px`});
@@ -168,6 +189,9 @@ function changeClothing(i, piece, permanent = true) {
             charDetails.bottom = i;
         }
 
+        return;
+
+    // Shoes
     } else {
         const shoes = document.querySelectorAll('.shoes');
         shoes.forEach(s => {s.style.backgroundPosition = `${-i * width}px ${-3 * height}px`});
@@ -177,53 +201,46 @@ function changeClothing(i, piece, permanent = true) {
             document.getElementById(`shoes-${i}`).classList.add('selected');
             charDetails.shoes = i;
         }
+
+        return;
     }
 }
 
 
+// Add preview function when mousing over selections
 function mouseoverPreview() {
 
-    const numTalent = 5;
-    for (let i = 0; i < numTalent; i++) {
-        document.getElementById(`talent-${i}`).addEventListener('mouseover', () => {changeTalent(i, false)});
-        document.getElementById(`talent-${i}`).addEventListener('mouseout', () => {changeTalent(charDetails.talent, false)});
+    const categories = [
+        { name: 'talent', styles: 5, foo: changeTalent, param: -1, },
+        { name: 'hairFront', styles: 3, foo: changeHair, param: 0, },
+        { name: 'hairBack', styles: 4, foo: changeHair, param: 1, },
+        { name: 'eyes', styles: 3, foo: changeEyes, param: -1, },
+        { name: 'top', styles: 3, foo: changeClothing, param: 0, },
+        { name: 'bottom', styles: 3, foo: changeClothing, param: 1, },
+        { name: 'shoes', styles: 3, foo: changeClothing, param: 2, },
+    ];
+
+    for (let j = 0; j < categories.length; j++) {
+
+        const currCategory = categories[j];
+
+        for (let i = 0; i < currCategory.styles; i++) {
+
+            let params = [i, false];
+
+            // Add extra parameter if necessary
+            if (currCategory.param != -1)
+                params.splice(1, 0, currCategory.param);
+
+            document.getElementById(`${currCategory.name}-${i}`).addEventListener('mouseover', () => { currCategory.foo(...params) });
+            document.getElementById(`${currCategory.name}-${i}`).addEventListener('mouseout', () => {
+                let evilParams = params.with(0, charDetails[currCategory.name]);
+                currCategory.foo(...evilParams);
+            });
+        }
     }
 
-    const numHairFront = 3;
-    for (let i = 0; i < numHairFront; i++) {
-        document.getElementById(`hairFront-${i}`).addEventListener('mouseover', () => {changeHair(i, 0, false)});
-        document.getElementById(`hairFront-${i}`).addEventListener('mouseout', () => {changeHair(charDetails.hairFront, 0, false)});
-    }
-
-    const numHairBack = 4;
-    for (let i = 0; i < check[1]; i++) {
-        document.getElementById(`hairBack-${i}`).addEventListener('mouseover', () => {check[2](i, 1, false)});
-        document.getElementById(`hairBack-${i}`).addEventListener('mouseout', () => {changeHair(charDetails.hairBack, 1, false)});
-    }
-
-    const eyeStyles = 3;
-    for (let i = 0; i < eyeStyles; i++) {
-        document.getElementById(`eyes-${i}`).addEventListener('mouseover', () => {changeEyes(i, false)});
-        document.getElementById(`eyes-${i}`).addEventListener('mouseout', () => {changeEyes(charDetails.eyes, false)});
-    }
-
-    const tops = 3;
-    for (let i = 0; i < tops; i++) {
-        document.getElementById(`top-${i}`).addEventListener('mouseover', () => {changeClothing(i, 0, false)});
-        document.getElementById(`top-${i}`).addEventListener('mouseout', () => {changeClothing(charDetails.top, 0, false)});
-    }
-
-    const bottoms = 3;
-    for (let i = 0; i < bottoms; i++) {
-        document.getElementById(`bottom-${i}`).addEventListener('mouseover', () => {changeClothing(i, 1, false)});
-        document.getElementById(`bottom-${i}`).addEventListener('mouseout', () => {changeClothing(charDetails.bottom, 1, false)});
-    }
-
-    const numShoes = 3;
-    for (let i = 0; i < numShoes; i++) {
-        document.getElementById(`shoes-${i}`).addEventListener('mouseover', () => {changeClothing(i, 2, false)});
-        document.getElementById(`shoes-${i}`).addEventListener('mouseout', () => {changeClothing(charDetails.shoes, 2, false)});
-    }
+    return;
 }
 
 
@@ -252,6 +269,7 @@ function changeColor() {
 }
 
 
+// Changes the color of part based on HSV values from sliders
 function recolor(part, sliders) {
     const filter = `hue-rotate(${sliders[0].value}deg) saturate(${sliders[1].value}%) brightness(${sliders[2].value}%)`;
 
@@ -264,6 +282,62 @@ function recolor(part, sliders) {
 }
 
 
+// Changes color of piece to match target
 function match(piece, target) {
+
+    const sliderTypes = ['-hue', '-saturation', '-brightness'];
+
+    const pieceSliders = (sliderTypes.map(element => document.getElementById(piece + element)));
+    const targetSliders = (sliderTypes.map(element => document.getElementById(target + element)));
+
+    for (let i = 0; i < pieceSliders.length; i++) {
+        pieceSliders[i].value = targetSliders[i].value;
+    }
+    const className = ['.' + piece];
+    recolor(className, pieceSliders);
+
     return;
 }
+
+
+// Bald
+const baldKeys = ['b', 'a', 'l', 'd'];
+var baldPosition = 0;
+var baldness = false;
+document.addEventListener('keydown', (e) => {
+
+    if (e.key !== baldKeys[baldPosition]) {
+        baldPosition = 0;
+        return;
+    }
+
+    baldPosition++;
+
+    if (baldPosition === baldKeys.length) {
+        baldness = true;
+
+        const hairFront = document.querySelectorAll('.front-hair');
+        hairFront.forEach(h => {h.style.display = 'none'});
+
+        const hairBack = document.querySelectorAll('.back-hair');
+        hairBack.forEach(h => {h.style.display = 'none'});
+    }
+
+    return;
+});
+
+
+var currentClothes = 'top';
+function changeClothesPage(target) {
+
+    if (target === currentClothes) return;
+
+    document.getElementById(`${currentClothes}-icon`).classList.remove('clothes-active');
+    document.getElementById(`${currentClothes}-select`).style.display = 'none';
+
+    document.getElementById(`${target}-icon`).classList.add('clothes-active');
+    document.getElementById(`${target}-select`).style.display = 'block';
+
+    currentClothes = target;
+}
+

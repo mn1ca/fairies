@@ -1,5 +1,8 @@
+// Mute console
+console.log = () => {};
+
 // Preloader
-window.addEventListener('load', function () {
+window.addEventListener('load', () => {
     const loader = document.getElementById('preloader');
     const music = document.getElementById('tune');
 
@@ -33,13 +36,39 @@ window.addEventListener('load', function () {
         if (window.matchMedia('(max-width: 600px)').matches) loader.appendChild(warning);
 
     }, 1500);
+
+    mouseoverPreview();
+    changeColor();
 });
 
 
-// Mute music when not in focus
+var musicPlaying = true;
+function toggleMusic() {
+    const icon = document.querySelectorAll('.music-icon');
+    const music = document.getElementById('tune');
+
+    if (musicPlaying) {
+        music.volume = 0;
+        icon.forEach(e => {
+            e.style.backgroundPosition = '-300px 0px';
+        });
+        musicPlaying = false;
+    } else {
+        music.volume = 0.5;
+        icon.forEach(e => {
+            e.style.backgroundPosition = '-200px 0px';
+        });
+        musicPlaying = true;
+
+    }
+}
+
+
+// Quiet music when not in focus
 window.addEventListener('blur', () => {
-    document.getElementById('tune').volume = 0;
+    document.getElementById('tune').volume = 0.15;
 });
+
 
 window.addEventListener('focus', () => {
     if (musicPlaying) document.getElementById('tune').volume = 0.5;
@@ -51,10 +80,8 @@ var prev = {
     X: 0,
     Y: 0
 };
-document.addEventListener('DOMContentLoaded', () => {
 
-    mouseoverPreview();
-    changeColor();
+document.addEventListener('DOMContentLoaded', () => {
 
     const screen = document.getElementById('screen');
     const background = document.getElementById('background');
@@ -140,33 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Bald
-const baldKeys = ['b', 'a', 'l', 'd'];
-var baldPosition = 0;
-var baldness = false;
-document.addEventListener('keydown', (e) => {
-
-    if (e.key !== baldKeys[baldPosition]) {
-        baldPosition = 0;
-        return;
-    }
-
-    baldPosition++;
-
-    if (baldPosition === baldKeys.length) {
-        baldness = true;
-
-        const hairFront = document.querySelectorAll('.front-hair');
-        hairFront.forEach(h => {h.style.display = 'none'});
-
-        const hairBack = document.querySelectorAll('.back-hair');
-        hairBack.forEach(h => {h.style.display = 'none'});
-    }
-
-    return;
-});
-
-
 function openJournal() {
     if (charDetails.sit) sit();
 
@@ -185,51 +185,13 @@ function changePage(i) {
     const j = (i == 1) ? 2 : 1;
 
     // Add hover effect to inactive page
-    document.getElementById(`icon-page${i}`).classList.remove('journal-icon');
-    document.getElementById(`icon-page${j}`).classList.add('journal-icon');
+    document.getElementById(`icon-page${i}`).classList.remove('tab-icon');
+    document.getElementById(`icon-page${j}`).classList.add('tab-icon');
 
     document.getElementById(`page${i}`).style.display = 'block';
     document.getElementById(`page${j}`).style.display = 'none';
 }
 
-var musicPlaying = true;
-function toggleMusic() {
-    const icon = document.querySelectorAll('.music-icon');
-    const music = document.getElementById('tune');
-
-    if (musicPlaying) {
-        music.volume = 0;
-        icon.forEach(e => {
-            e.style.backgroundPosition = '-300px 0px';
-        });
-        musicPlaying = false;
-    } else {
-        music.volume = 0.5;
-        icon.forEach(e => {
-            e.style.backgroundPosition = '-200px 0px';
-        });
-        musicPlaying = true;
-
-    }
-}
-
-const width = 500;
-const height = 875;
-var charDetails = {
-
-    talent: 1,
-    hairFront: 1,
-    hairBack: 2,
-    hairColor: 5,
-    eyes: 0,
-
-    body: 1,
-    top: 2,
-    bottom: 2,
-    shoes: 2,
-
-    sit: false,
-}
 
 function sit() {
 

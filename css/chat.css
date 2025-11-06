@@ -12,10 +12,6 @@
     --tan: #eddec2;
     --cream: #f7f2e4;
 
-    --w: 500px;
-    --h: 875px;
-    --scale: .25;
-
     --notification-sfx: none;
 }
 
@@ -191,4 +187,9 @@ a {
 
 #dimbg {
     display: none !important;
+}
+
+::selection {
+    background-color: #c0caed;
+    color: var(--brown);
 }

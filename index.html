@@ -3,8 +3,10 @@
         <meta name="viewport" content="initial-scale=1.0">
         <meta charset="UTF-8">
         <title></title>
-        <link href="./style.css" rel="stylesheet" type="text/css" media="all">
-        <script src="script.js"></script>
+        <link href="./css/style.css" rel="stylesheet" type="text/css" media="all">
+        <link href="./css/character.css" rel="stylesheet" type="text/css" media="all">
+        <script src="./js/script.js"></script>
+        <script src="./js/character.js"></script>
         <script src="https://iframe.chat/scripts/main.min.js"></script>
 
         <!-- favicon -->
@@ -14,55 +16,69 @@
 
 
 <body>
-    <div id='wrapper'>
-    <div id="preloader">
-
+    <!--<div id='preloader'>
         <div id='load'>Loading </div>
-    </div>
-    <audio id='tune' src='audio/Maple%20Tree%20Hill.mp3' autoplay></audio>
+    </div>-->
 
-    <div id='center'>
+    <audio loop autoplay id='tune' src='audio/Maple%20Tree%20Hill.mp3'></audio>
+
     <div id='outer'>
         <div id='border'></div>
         <div id='music-icon' class='music-icon' onclick='toggleMusic()'></div>
         <div id='journal-icon' onclick='openJournal()'></div>
-        <div id='sit-icon'>
-            <div id='sit' onclick='sit()'></div>
-        </div>
+        <div id='sit-icon'><div id='sit' onclick='sit()'></div></div>
     </div>
 
     <div id='screen'>
         <div id='parallax'></div>
-        <div id='background'></div>
-        <div id="particle-container"></div>
+        <div id='background'>
+
+            <a href='https://mn1ca.fish' target='_blank'>
+            <div class='sign top-sign'>
+                <span class='sign-text'>&nbsp;Home</span>
+            </div>
+            </a>
+
+            <a href='https://mn1ca.fish/design' target='_blank'>
+            <div class='sign bottom-sign'>
+                <span class='sign-text'>Design</span>
+            </div>
+            </a>
+        </div>
+
         <div id='bounds'>
         <div id='character'>
             <div id='details'>
-                <div id='wings' class='detail'></div>
-                <div id='back-hair' class='detail'></div>
-                <div id='body' class='detail'></div>
-                <div id='eye-color' class='detail'></div>
-                <div id='eyes' class='detail'></div>
-                <div id='front-hair' class='detail'></div>
+                <div id='wings' class='detail wings'></div>
+                <div id='glow' class='detail glow'></div>
+                <div class='detail back-hair'></div>
+                <div id='body' class='detail body'></div>
 
-                <div id='shoes' class='detail'></div>
-                <div id='bottom' class='detail'></div>
-                <div id='top' class='detail'></div>
-            </div>
+                <div id='shoes' class='detail shoes'></div>
+                <div id='bottom' class='detail bottom'></div>
+                <div class='detail top'></div>
+
+                <div class='detail front-hair'></div>
+
+                <div class='detail eye-color'></div>
+                <div class='detail eyes'></div>
             </div>
         </div>
+        </div>
+
     </div>
 
-    <div id='journal-display' style='display: none'>
+    <div id='journal-display'>
     <div id='shadow' onclick='closeJournal()'></div>
     <div id='journal'>
-        <div id='close' onclick='closeJournal()'></div>
-
+        <div id='close' class='journal-icon' onclick='closeJournal()'></div>
+        <div id='icon-page1' onclick='changePage(1)'></div>
+        <div id='icon-page2' class='journal-icon' onclick='changePage(2)'></div>
 
         <div id='page1'>
             <div class='title' style='top: 85px; left: 150px; transform: rotate(-5deg);'>Credits & Links</div>
 
-            <div class='box' style='top: 140px; left: 200px;'>
+            <div class='box text-box'>
 
                 This project is a partial recreation of the now-defunct <a href='https://en.wikipedia.org/wiki/Pixie_Hollow_(video_game)' target='_blank'>Pixie Hollow Online.</a>
 
@@ -83,8 +99,11 @@
                 <ul>
                     <li><a href='https://nenrikido.neocities.org/blog/post/making-a-preloader/' target='_blank'>Preloader</a></li>
                     <li><a href='https://stackoverflow.com/questions/13014808/is-there-any-way-to-animate-an-ellipsis-with-css-animations' target='_blank'>Animated ellipsis</a></li>
-                    <li><a href='https://design-system.w3.org/styles/svg-icons.html' target='_blank'>SVG icons</a></li>
-                    <li><a href='https://stackoverflow.com/questions/63433264/looping-background-music-in-html' target='_blank'>Music looping</a></li>
+                    <li><a href='https://design-system.w3.org/styles/svg-icons.html' target='_blank'><h4>SVG</h4> icons
+                    </a><ul class='sub'>
+                        <li>Icon designs</li>
+                        <li><a href='https://yoksel.github.io/url-encoder/' target='_blank'><h4>CSS</h4> formatter</a></li>
+                    </ul>
                 </ul>
 
                 <h1>Music</h1>
@@ -101,15 +120,181 @@
 
             <iframe src="https://iframe.chat/embed/alternate?chat=40345917" id="chattable"></iframe>
             <script>
-              chattable.initialize({stylesheet: "./chat.css"});
+              chattable.initialize({stylesheet: "./css/chat.css"});
             </script>
 
 
+        </div> <!-- page1 -->
+
+        <div id='page2' style='display: none'>
+           <div class='title' style='width: 225px; top: 85px; right: 250px; padding-left: 35px; transform: rotate(5deg); background-color: var(--cream)'>Wardrobe</div>
+
+            <div class='box' id='select-box'>
+
+                <div id='talent-select' style='display: none'>
+                    <h1>Talent</h1>
+                    <div class='option' id='talent-0' onclick='changeTalent(0)'>Tinker</div>
+                    <div class='option' id='talent-1' onclick='changeTalent(1)'>Garden</div>
+                    <div class='option' id='talent-2' onclick='changeTalent(2)'>Water</div>
+                    <div class='option' id='talent-3' onclick='changeTalent(3)'>Light</div>
+                    <div class='option' id='talent-4' onclick='changeTalent(4)'>Animal</div>
+
+                </div>
+
+                <div id='hair-select' style='display: none'>
+
+                    <h1>Color</h1>
+                    <div class='color-select'>
+
+                    <h3>Presets</h3>
+                    <div class='palette'>
+                        <div class='color hair-color red' onclick='changeHairColor(0)'></div>
+                        <div class='color hair-color blonde' onclick='changeHairColor(1)'></div>
+                        <div class='color hair-color white' onclick='changeHairColor(2)'></div>
+                        <div class='color hair-color lbrown' onclick='changeHairColor(3)'></div>
+                        <div class='color hair-color dbrown' onclick='changeHairColor(4)'></div>
+                        <div class='color hair-color black' onclick='changeHairColor(5)'></div>
+                    </div>
+                        <h3>Custom</h3>
+                        <input class='slider-hue' id='hair-hue' step=1 type="range" min=-25 max=25 value=0>
+                        <input class='slider-saturate' id='hair-saturation' step=1 type="range" min=75 max=125 value=100>
+                        <input class='slider-brightness' id='hair-brightness' step=0.4 type="range" min=75 max=125 value=100>
+                    </div>
+
+                    <div></div>
+                    <h1>Front styles</h1>
+                    <div class='option' id='hairFront-0' onclick='changeHair(0, 0)'>Long pieces</div>
+                    <div class='option selected' id='hairFront-1' onclick='changeHair(1, 0)'>Bangs</div>
+                    <div class='option' id='hairFront-2' onclick='changeHair(2, 0)'>Slicked</div>
+
+                    <h1>Back styles</h1>
+                    <div class='option' id='hairBack-0' onclick='changeHair(0, 1)'>Sleek</div>
+                    <div class='option' id='hairBack-1' onclick='changeHair(1, 1)'>Tied up</div>
+                    <div class='option selected' id='hairBack-2' onclick='changeHair(2, 1)'>Wavy</div>
+                    <div class='option' id='hairBack-3' onclick='changeHair(3, 1)'>None</div>
+
+
+                    <div style='margin-top: 1000px'>Type ‘bald’ for a surprise!</div>
+
+                </div>
+
+                <div id='skin-select' style='display: none'>
+
+                    <h1>Skin tone</h1>
+                    <div class='color-select'>
+
+                    <h3>Presets</h3>
+                    <div class='palette'>
+                        <div class='color skin-tone skin-0' onclick='changeBody(0)'></div>
+                        <div class='color skin-tone skin-1' onclick='changeBody(1)'></div>
+
+                        <div class='color skin-tone skin-2' onclick='changeBody(2)'></div>
+                        <div class='color skin-tone skin-3' onclick='changeBody(3)'></div>
+                    </div>
+                        <h3>Custom</h3>
+                        <input class='slider-hue' id='skin-hue' step=0.1 type="range" min=-5 max=5 value=0>
+                        <input class='slider-saturate' id='skin-saturation' step=0.6 type="range" min=85 max=115 value=100>
+                        <input class='slider-brightness' id='skin-brightness' step=0.4 type="range" min=90 max=110 value=100>
+                    </div>
+                </div>
+
+                <div id='eyes-select' style='display: none'>
+                    <h1>Color</h1>
+                        <input class='slider-hue' id='eyes-hue' step=5 type="range" min=-180 max=180 value=0>
+                        <input class='slider-saturate' id='eyes-saturation' step=2.08 type="range" min=25 max=175 value=100>
+                        <input class='slider-brightness' id='eyes-brightness' step=0.69 type="range" min=75 max=125 value=100>
+
+                    <h1>Eye shape</h1>
+                    <div class='option selected' id='eyes-0' onclick='changeEyes(0)'>Almond</div>
+                    <div class='option' id='eyes-1' onclick='changeEyes(1)'>Cheerful</div>
+                    <div class='option' id='eyes-2' onclick='changeEyes(2)'>Downturned</div>
+                </div>
+
+                <div id='clothing-select' style='display: none'>
+                    <h1>Top</h1>
+                    <div class='color-select-clothes'>
+
+                        <input class='slider-hue-full' id='top-hue' step=5 type="range" min=-180 max=180 value=0>
+                        <input class='slider-saturate' id='top-saturation' step=2.08 type="range" min=25 max=175 value=100>
+                        <input class='slider-brightness' id='top-brightness' step=0.69 type="range" min=75 max=125 value=100>
+                        <h3 class='match'>match bottom</h3>
+                        <h3 class='match'>match shoes</h3>
+
+                    </div>
+
+                    <br>
+
+                    <div class='option' id='top-0' onclick='changeClothing(0, 0)'>Off shoulder</div>
+                    <div class='option' id='top-1' onclick='changeClothing(1, 0)'>Leafy</div>
+                    <div class='option selected' id='top-2' onclick='changeClothing(2, 0)'>Wrap</div>
+
+
+                    <h1>Bottom</h1>
+                    <div class='color-select'>
+                    <h3>color</h3>
+                        <input class='slider-hue-full' id='bottom-hue' step=5 type="range" min=-180 max=180 value=0>
+                        <input class='slider-saturate' id='bottom-saturation' step=2.08 type="range" min=25 max=175 value=100>
+                        <input class='slider-brightness' id='bottom-brightness' step=0.69 type="range" min=75 max=125 value=100>
+                        match bottom / match shoes
+                    </div>
+
+                    <br>
+
+                    <div class='option' id='bottom-0' onclick='changeClothing(0, 1)'>Petaled skirt</div>
+                    <div class='option' id='bottom-1' onclick='changeClothing(1, 1)'>Asymmetrical</div>
+                    <div class='option selected' id='bottom-2' onclick='changeClothing(2, 1)'>Leaf with slit</div>
+
+
+                    <h1>Shoes</h1>
+                    <div class='color-select'>
+                    <h3>color</h3>
+                        <input class='slider-hue-full' id='shoes-hue' step=5 type="range" min=-180 max=180 value=0>
+                        <input class='slider-saturate' id='shoes-saturation' step=2.08 type="range" min=25 max=175 value=100>
+                        <input class='slider-brightness' id='shoes-brightness' step=0.69 type="range" min=75 max=125 value=100>
+                        match bottom / match shoes
+                    </div>
+
+                    <div class='option' id='shoes-0' onclick='changeClothing(0, 2)'>Puffball</div>
+                    <div class='option' id='shoes-1' onclick='changeClothing(1, 2)'>Slippers</div>
+                    <div class='option selected' id='shoes-2' onclick='changeClothing(2, 2)'>Boots</div>
+                </div>
+
+            </div>
+
+            <div class='select-menu'>
+
+                <div class='select-option active' id='talent' onclick='changeMenu(this.id)'>Talent</div>
+
+                <div class='select-option' id='hair' onclick='changeMenu(this.id)'>Hair</div>
+
+                <div class='select-option' id='skin' onclick='changeMenu(this.id)'>Skin tone</div>
+
+                <div class='select-option' id='eyes' onclick='changeMenu(this.id)'>Eyes</div>
+
+                <div class='select-option' id='clothing' onclick='changeMenu(this.id)'>Clothes</div>
+            </div>
+
+            <div class='box portrait'>
+                <div class='journal-detail wings'></div>
+                <div class='journal-detail back-hair'></div>
+                <div class='journal-detail body'></div>
+
+                <div class='journal-detail shoes'></div>
+                <div class='journal-detail bottom'></div>
+                <div class='journal-detail top'></div>
+
+                <div class='journal-detail front-hair'></div>
+
+                <div class='journal-detail eye-color'></div>
+                <div class='journal-detail eyes'></div>
+            </div>
+
+
         </div>
 
-    </div>
-</div>
-</div>
-        </div>
+    </div> <!-- journal -->
+    </div> <!-- journal-display -->
+
+
 </body>
 </html>

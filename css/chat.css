@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+
+@font-face {
+    font-family: 'Pristina';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Pristina'), url('https://github.com/mn1ca/pixiehollow/blob/master/fonts/Pristina.woff') format('woff');
+}
+
+:root {
+    --brown: #441c16;
+    --tan: #eddec2;
+    --cream: #f7f2e4;
+
+    --w: 500px;
+    --h: 875px;
+    --scale: .25;
+
+    --notification-sfx: none;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    width: 400px;
+    font-family: Libertinus Sans;
+    color: var(--brown);
+
+    cursor: url('https://github.com/mn1ca/pixiehollow/blob/master/img/cursor/1.png'), pointer !important;
+}
+
+.msgWrapper {
+    margin: 5px;
+}
+
+.allMessages {
+
+    width: 100%;
+
+    border: 2px solid var(--brown);
+    outline: 1px dotted var(--brown);
+    outline-offset: -5px;
+    padding: 10px 15px;
+    padding-bottom: 35px;
+    box-sizing: border-box;
+
+    position: relative;
+
+    text-align: left;
+    font-size: 10pt;
+    line-height: 1;
+
+    cursor: url('https://github.com/mn1ca/pixiehollow/blob/master/img/cursor/1.png'), pointer !important;
+}
+
+.msgWrapper:nth-child(6n) {
+    margin-top: 20px;
+}
+
+.msgWrapper:nth-child(6n) > .allMessages:before {
+    content: attr(time);
+    position: absolute;
+    bottom: calc(100% + 3px);
+    width: 100%;
+    text-align: center;
+}
+
+.msgBody {
+    width: 80%;
+}
+
+.senderInfo::before {
+    font-family: Libertinus Sans;
+    content: '—\00a0';
+}
+
+.senderInfo {
+    width: auto;
+
+    font-family: Pristina;
+    font-size: 18px;
+    font-weight: 100;
+    text-align: right;
+
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+#background {
+    width: 80%;
+    height: 60% !important;
+
+    background-color: var(--tan);
+    border: 2px solid var(--brown);
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, .25), 0 0px 10px #594b47;
+
+    box-sizing: content-box;
+    padding-bottom: 40px;
+}
+
+#scrollToBottom {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#textInput {
+    width: 300px;
+
+    border: 2px solid var(--brown);
+    outline: 1px dotted var(--brown);
+    outline-offset: -5px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .25), 0 0 5px #594b47;
+
+    position: absolute;
+    bottom: 25px;
+    right: 20px;
+
+    background-color: var(--cream) !important;
+
+    transform: rotate(5deg);
+}
+
+#nameEntry {
+    padding: 10px;
+
+    font-family: Pristina;
+    font-size: 18px;
+    color: var(--brown);
+
+    background-color: var(--cream);
+}
+
+#input {
+
+    min-height: 60px;
+    margin: auto;
+    padding: 20px;
+    padding-top: 0px;
+
+    background-color: var(--cream);
+
+    font-family: Libertinus Sans;
+}
+
+#input:focus, #nameEntry:focus {
+ outline: none;
+}
+
+#input:empty::before {
+ content: "Leave a message...";
+    color: var(--brown);
+    opacity: .5;
+}
+a {
+ font-family: inherit;
+}
+
+
+#timestamp {
+ display: none !important;
+}
+
+#top_banner {
+ display: none;
+}
+
+#settings {
+ display: none;
+}
+
+#loadMore {
+ display: none;
+}
+
+#emojiTrayToggle {
+    display: none;
+}
+
+#replyBanner {
+  font-size: 8pt;
+}
+
+#is_typing {
+  opacity: 0;
+}
+
+#dimbg {
+    display: none !important;
+}

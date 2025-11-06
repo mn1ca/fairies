@@ -1,0 +1,172 @@
+#character {
+    width: 125px;
+    height: 220px;
+
+    position: relative;
+    margin: auto;
+    transition: transform 1s ease-out;
+
+    pointer-events: none;
+}
+
+.detail {
+    width: var(--w);
+    height: var(--h);
+
+    transform: scale(.25);
+    transform-origin: top left;
+
+    position: absolute;
+}
+
+.journal-detail {
+    width: var(--w);
+    height: var(--h);
+
+    transform: scale(.4);
+    transform-origin: top left;
+
+    position: absolute;
+}
+
+.closeup {
+    transform: scaleX(-1) translate(-340px, -70px);
+}
+
+.body {
+    background: url('../img/character/body.png');
+    background-position: calc(var(--w) * -1) -0px;
+}
+
+.front-hair {
+    background: url('../img/character/hairFront.png');
+    background-position: calc(var(--w) * -5) calc(var(--h) * -1);
+
+    margin-top: -0.5px;
+}
+
+.back-hair {
+    background: url('../img/character/hairBack.png');
+    background-position: calc(var(--w) * -5) calc(var(--h) * -2);
+
+}
+
+.glow {
+    background: url('../img/character/body.png');
+    background-position: -0px calc(var(--h) * -4);
+
+    opacity: .6;
+}
+
+.wings {
+    background: url('../img/character/body.png');
+    background-position: -0px calc(var(--h) * -3);
+    animation: wing-flap 0.35s steps(3) infinite;
+}
+
+@keyframes wing-flap {
+    from { background-position: 0px calc(var(--h) * -3); }
+    to { background-position: calc(var(--w) * -3) calc(var(--h) * -3); }
+}
+
+.eyes {
+    background: url('../img/character/body.png');
+    background-position: 0 calc(var(--h) * -2);
+}
+
+.eye-color {
+    background: url('../img/character/body.png');
+    background-position: calc(var(--w) * -3) calc(var(--h) * -2);
+}
+
+.top {
+    background: url('../img/character/clothing.png');
+    background-position: calc(var(--w) * -2) 0px;
+}
+
+.bottom {
+    background: url('../img/character/clothing.png');
+    background-position: calc(var(--w) * -2) calc(var(--h) * -1);
+}
+
+.shoes {
+    background: url('../img/character/clothing.png');
+    background-position: calc(var(--w) * -2) calc(var(--h) * -3);
+}
+
+.palette {
+    display: inline-flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    margin: 5px -10px 15px 0px;
+}
+
+.color {
+    cursor: url('../img/cursor/2.png'), pointer;
+    clip-path: circle(50% at 50% 50%);
+}
+
+.color:hover {
+    transform: scale(1.1);
+}
+
+.hair-color {
+    width: 31px;
+    height: 31px;
+
+    margin: 0px 1px;
+
+    background: url('../img/character/colors.png');
+    background-size: 600% auto;
+}
+
+.skin-tone {
+    width: 40px;
+    height: 40px;
+
+    margin: 0px 2px;
+
+    background: url('../img/character/colors.png');
+    background-size: 610% auto;
+}
+
+.skin-0 {
+    background-position: 0 calc(var(--sw) * 1);
+}
+
+.skin-1 {
+    background-position: calc(var(--sw) * 1) calc(var(--sw) * 1);
+}
+
+.skin-2 {
+    background-position: calc(var(--sw) * 2) calc(var(--sw) * 1);
+}
+
+.skin-3 {
+    background-position: calc(var(--sw) * 3) calc(var(--sw) * 1);
+}
+
+.red {
+    background-position: 0 0;
+}
+
+.blonde {
+    background-position: calc(var(--hw) * 1) 0;
+}
+
+.white {
+    background-position: calc(var(--hw) * 2) 0;
+}
+
+.lbrown {
+    background-position: calc(var(--hw) * 3) 0;
+}
+
+.dbrown {
+    background-position: calc(var(--hw) * 4) 0;
+}
+
+.black {
+    background-position: calc(var(--hw) * 5) 0;
+}

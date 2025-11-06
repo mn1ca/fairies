@@ -4,7 +4,7 @@
     font-family: 'Pristina';
     font-style: normal;
     font-weight: normal;
-    src: url('https://github.com/mn1ca/fairies/blob/master/fonts/Pristina.woff') format('woff');
+    src: url('https://github.com/mn1ca/fairies/raw/refs/heads/master/fonts/Pristina.woff') format('woff');
 }
 
 :root {
